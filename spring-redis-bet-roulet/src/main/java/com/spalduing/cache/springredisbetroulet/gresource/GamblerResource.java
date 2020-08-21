@@ -12,7 +12,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/rest/gambler")
 public class GamblerResource {
-    private GamblerRepository gamblerRepository;
+    final private GamblerRepository gamblerRepository;
 
     public GamblerResource(GamblerRepository gamblerRepository) {
         this.gamblerRepository = gamblerRepository;
