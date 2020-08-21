@@ -40,7 +40,7 @@ public class GamblerRepositoryImpl implements GamblerRepository {
 
     @Override
     public void update(Gambler gambler) {
-        save(gambler);
+        hashOperations.put(GAMBLER, gambler.getId(), gambler);
     }
 
     @Override

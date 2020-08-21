@@ -21,10 +21,11 @@ public class GamblerResource {
         gamblerRepository.save(gambler);
         return gamblerRepository.findById(gambler);
     }
-    @GetMapping("/updateG/{id}/{name}")
-    public Gambler updateG(@PathVariable("id") final String id, @PathVariable("name") final String name){
-        gamblerRepository.update(new Gambler(id, name, 0, false));
-        return gamblerRepository.findById(new Gambler(id, name,0, false));
+    @GetMapping("/updateG/{id}/{name}/{bet}/{color}")
+    public Gambler updateG(@PathVariable("id") final String id, @PathVariable("name") final String name, @PathVariable("bet") final String bet,
+                           @PathVariable("color") final String color){
+        gamblerRepository.update(new Gambler( id , name, Integer.parseInt(bet), Boolean.parseBoolean(color)));
+        return gamblerRepository.findById(new Gambler(id, name,Integer.parseInt(bet),  Boolean.parseBoolean(color)));
     }
     @GetMapping("/findG/{id}")
     public Gambler findG(@PathVariable("id") final String id){
