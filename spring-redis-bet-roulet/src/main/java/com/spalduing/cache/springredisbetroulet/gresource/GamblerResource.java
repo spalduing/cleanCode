@@ -15,7 +15,6 @@ public class GamblerResource {
         this.gamblerRepository = gamblerRepository;
     }
 
-
     @PostMapping("/addG")
     public Gambler addG(@RequestBody Gambler gambler){
         gamblerRepository.save(gambler);

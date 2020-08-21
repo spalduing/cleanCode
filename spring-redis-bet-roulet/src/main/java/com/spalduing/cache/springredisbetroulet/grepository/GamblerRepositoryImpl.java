@@ -18,10 +18,12 @@ public class GamblerRepositoryImpl implements GamblerRepository {
     public GamblerRepositoryImpl(RedisTemplate<String, ?> redisTemplate) {
         this.redisTemplate = redisTemplate;
     }
+
     @PostConstruct
     private void init(){
         hashOperations = redisTemplate.opsForHash();
     }
+
     @Override
     public void save(Gambler gambler) {
         hashOperations.put(GAMBLER, UUID.randomUUID().toString(), gambler);

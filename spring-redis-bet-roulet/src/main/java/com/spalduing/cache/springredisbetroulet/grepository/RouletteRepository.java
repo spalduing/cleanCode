@@ -1,0 +1,14 @@
+package com.spalduing.cache.springredisbetroulet.grepository;
+
+
+import com.spalduing.cache.springredisbetroulet.gclass.Roulette;
+
+import java.util.Map;
+
+public interface RouletteRepository {
+    void save(Roulette roulette);
+    Map<String, Roulette> findAll();
+    String openRoulette(Roulette roulette);
+    String closeRoulette(Roulette roulette);
+    String playBet(String betColor, int betNumber, int betAmount);
+}
