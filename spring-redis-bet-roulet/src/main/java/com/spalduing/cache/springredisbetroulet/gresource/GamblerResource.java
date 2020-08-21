@@ -16,12 +16,12 @@ public class GamblerResource {
     }
 
 
-    @GetMapping("/addG")
+    @PostMapping("/addG")
     public Gambler addG(@RequestBody Gambler gambler){
         gamblerRepository.save(gambler);
         return gamblerRepository.findById(gambler);
     }
-    @GetMapping("/updateG/{id}/{name}/{bet}/{color}")
+    @PostMapping("/updateG/{id}/{name}/{bet}/{color}")
     public Gambler updateG(@PathVariable("id") final String id, @PathVariable("name") final String name, @PathVariable("bet") final String bet,
                            @PathVariable("color") final String color){
         gamblerRepository.update(new Gambler( id , name, Integer.parseInt(bet), Boolean.parseBoolean(color)));
@@ -36,7 +36,7 @@ public class GamblerResource {
         return gamblerRepository.findAll();
     }
 
-    @GetMapping("/delG/{id}")
+    @DeleteMapping("/delG/{id}")
     public void delG(@PathVariable("id") final String id){
         gamblerRepository.delete(new Gambler(id, "", 0, false));
     }
