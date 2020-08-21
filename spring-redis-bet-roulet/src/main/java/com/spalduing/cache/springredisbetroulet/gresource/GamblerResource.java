@@ -21,15 +21,16 @@ public class GamblerResource {
         gamblerRepository.save(gambler);
         return gamblerRepository.findById(gambler);
     }
-    @PostMapping("/updateG/{id}/{name}/{bet}/{color}")
-    public Gambler updateG(@PathVariable("id") final String id, @PathVariable("name") final String name, @PathVariable("bet") final String bet,
+    @PostMapping("/updateG/{id}/{name}/{rId}/{bet}/{color}")
+    public Gambler updateG(@PathVariable("id") final String id, @PathVariable("name") final String name,
+                           @PathVariable("bet") final String bet, @PathVariable("rId") final String rouletteId,
                            @PathVariable("color") final String color){
-        gamblerRepository.update(new Gambler( id , name, Integer.parseInt(bet), Boolean.parseBoolean(color)));
-        return gamblerRepository.findById(new Gambler(id, name,Integer.parseInt(bet),  Boolean.parseBoolean(color)));
+        gamblerRepository.update(new Gambler( id , name, rouletteId, Integer.parseInt(bet), Boolean.parseBoolean(color)));
+        return gamblerRepository.findById(new Gambler(id, name,rouletteId, Integer.parseInt(bet),  Boolean.parseBoolean(color)));
     }
     @GetMapping("/findG/{id}")
     public Gambler findG(@PathVariable("id") final String id){
-       return gamblerRepository.findById(new Gambler(id, "", 0, false));
+       return gamblerRepository.findById(new Gambler(id, "", "0", 0, false));
     }
     @GetMapping("/allG")
     public Map<String, Gambler> allG(){
@@ -38,6 +39,6 @@ public class GamblerResource {
 
     @DeleteMapping("/delG/{id}")
     public void delG(@PathVariable("id") final String id){
-        gamblerRepository.delete(new Gambler(id, "", 0, false));
+        gamblerRepository.delete(new Gambler(id, "", "0", 0, false));
     }
 }

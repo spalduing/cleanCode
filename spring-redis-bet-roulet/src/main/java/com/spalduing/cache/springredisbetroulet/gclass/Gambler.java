@@ -5,12 +5,14 @@ import java.io.Serializable;
 public class Gambler implements Serializable {
     private String id;
     private String name;
+    private String rouletteId;
     private int bet;
     private boolean color;
 
-    public Gambler(String id, String name, int bet, boolean color) {
+    public Gambler(String id, String name, String rouletteId, int bet, boolean color) {
         this.id = id;
         this.name = name;
+        this.rouletteId = rouletteId;
         this.bet = bet;
         this.color = color;
     }
@@ -29,6 +31,14 @@ public class Gambler implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getRouletteId() {
+        return rouletteId;
+    }
+
+    public void setRouletteId(String rouletteId) {
+        this.rouletteId = rouletteId;
     }
 
     public int getBet() {
