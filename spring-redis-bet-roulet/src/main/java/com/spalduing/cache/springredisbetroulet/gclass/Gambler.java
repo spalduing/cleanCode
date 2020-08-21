@@ -1,6 +1,8 @@
 package com.spalduing.cache.springredisbetroulet.gclass;
 
-public class Gambler {
+import java.io.Serializable;
+
+public class Gambler implements Serializable {
     private String id;
     private String name;
     private int bet;

@@ -29,8 +29,17 @@ public class GamblerResource {
         gamblerRepository.update(new Gambler(id, name, 0, false));
         return gamblerRepository.findById(new Gambler(id, name,0, false));
     }
+    @GetMapping("/findG/{id}")
+    public Gambler findG(@PathVariable("id") final String id){
+       return gamblerRepository.findById(new Gambler(id, "", 0, false));
+    }
     @GetMapping("/allG")
     public Map<String, Gambler> allG(){
         return gamblerRepository.findAll();
+    }
+
+    @GetMapping("/delG/{id}")
+    public void delG(@PathVariable("id") final String id){
+        gamblerRepository.delete(new Gambler(id, "", 0, false));
     }
 }
