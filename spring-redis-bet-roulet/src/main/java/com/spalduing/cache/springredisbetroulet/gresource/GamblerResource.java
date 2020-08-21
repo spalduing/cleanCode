@@ -2,10 +2,7 @@ package com.spalduing.cache.springredisbetroulet.gresource;
 
 import com.spalduing.cache.springredisbetroulet.gclass.Gambler;
 import com.spalduing.cache.springredisbetroulet.grepository.GamblerRepository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -19,10 +16,10 @@ public class GamblerResource {
     }
 
 
-    @GetMapping("/addG/{id}/{name}")
-    public Gambler addG(@PathVariable("id") final String id, @PathVariable("name") final String name){
-        gamblerRepository.save(new Gambler(id, name, 0, false));
-        return gamblerRepository.findById(new Gambler(id, name,0, false));
+    @GetMapping("/addG")
+    public Gambler addG(@RequestBody Gambler gambler){
+        gamblerRepository.save(gambler);
+        return gamblerRepository.findById(gambler);
     }
     @GetMapping("/updateG/{id}/{name}")
     public Gambler updateG(@PathVariable("id") final String id, @PathVariable("name") final String name){

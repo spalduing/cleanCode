@@ -7,13 +7,15 @@ import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
 import java.util.Map;
+import java.util.UUID;
+
 @Repository
 public class GamblerRepositoryImpl implements GamblerRepository {
-
-    private RedisTemplate<String, Gambler> redisTemplate;
+    private static final String GAMBLER = "GAMBLER";
+    private RedisTemplate<String, ?> redisTemplate;
     private HashOperations hashOperations;
 
-    public GamblerRepositoryImpl(RedisTemplate<String, Gambler> redisTemplate) {
+    public GamblerRepositoryImpl(RedisTemplate<String, ?> redisTemplate) {
         this.redisTemplate = redisTemplate;
     }
     @PostConstruct
@@ -22,18 +24,18 @@ public class GamblerRepositoryImpl implements GamblerRepository {
     }
     @Override
     public void save(Gambler gambler) {
-        hashOperations.put("GAMBLER", gambler.getId(), gambler);
+        hashOperations.put(GAMBLER, UUID.randomUUID().toString(), gambler);
     }
 
     @Override
     public Map<String, Gambler> findAll() {
-        return hashOperations.entries("GAMBLER");
+        return hashOperations.entries(GAMBLER);
     }
 
     @Override
     public Gambler findById(Gambler gambler) {
         String id = gambler.getId();
-        return (Gambler)hashOperations.get("GAMBLER", id);
+        return (Gambler)hashOperations.get(GAMBLER, id);
     }
 
     @Override
@@ -44,6 +46,6 @@ public class GamblerRepositoryImpl implements GamblerRepository {
     @Override
     public void delete(Gambler gambler) {
         String id = gambler.getId();
-        hashOperations.delete("GAMBLER", id);
+        hashOperations.delete(GAMBLER, id);
     }
 }
