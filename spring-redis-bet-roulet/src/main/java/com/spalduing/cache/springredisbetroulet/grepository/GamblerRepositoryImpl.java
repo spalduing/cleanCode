@@ -5,6 +5,7 @@ import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
 
+import javax.annotation.PostConstruct;
 import java.util.Map;
 @Repository
 public class GamblerRepositoryImpl implements GamblerRepository {
@@ -14,9 +15,11 @@ public class GamblerRepositoryImpl implements GamblerRepository {
 
     public GamblerRepositoryImpl(RedisTemplate<String, Gambler> redisTemplate) {
         this.redisTemplate = redisTemplate;
+    }
+    @PostConstruct
+    private void init(){
         hashOperations = redisTemplate.opsForHash();
     }
-
     @Override
     public void save(Gambler gambler) {
         hashOperations.put("GAMBLER", gambler.getId(), gambler);
