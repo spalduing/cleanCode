@@ -16,9 +16,11 @@ public class RouletteResource {
         this.rouletteRepository = rouletteRepository;
     }
     @PostMapping("/addR")
-    public Roulette addR(@RequestBody Roulette roulette){
+    public String addR(@RequestBody Roulette roulette){
         rouletteRepository.save(roulette);
-        return rouletteRepository.findById(roulette);
+        return roulette.getId();
     }
+
+    @Post
 
 }
