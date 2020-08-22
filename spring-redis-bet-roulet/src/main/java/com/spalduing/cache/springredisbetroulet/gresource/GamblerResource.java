@@ -24,12 +24,12 @@ public class GamblerResource {
     public Gambler updateG(@PathVariable("id") final String id, @PathVariable("name") final String name,
                            @PathVariable("bet") final String bet, @PathVariable("rId") final String rouletteId,
                            @PathVariable("color") final String color){
-        gamblerRepository.update(new Gambler( id , name, rouletteId, Integer.parseInt(bet), ""));
-        return gamblerRepository.findById(new Gambler(id, name,rouletteId, Integer.parseInt(bet),  ""));
+        gamblerRepository.update(new Gambler( id , name, rouletteId, Integer.parseInt(bet), 0.0, ""));
+        return gamblerRepository.findById(new Gambler(id, name,rouletteId, Integer.parseInt(bet), 0.0, ""));
     }
     @GetMapping("/findG/{id}")
     public Gambler findG(@PathVariable("id") final String id){
-       return gamblerRepository.findById(new Gambler(id, "", "0", 0, ""));
+       return gamblerRepository.findById(new Gambler(id, "", "0", 0, 0.0, ""));
     }
     @GetMapping("/allG")
     public Map<String, Gambler> allG(){
@@ -38,6 +38,6 @@ public class GamblerResource {
 
     @DeleteMapping("/delG/{id}")
     public void delG(@PathVariable("id") final String id){
-        gamblerRepository.delete(new Gambler(id, "", "0", 0, ""));
+        gamblerRepository.delete(new Gambler(id, "", "0", 0, 0.0, ""));
     }
 }

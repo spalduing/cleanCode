@@ -18,6 +18,7 @@ public class RouletteRepositoryImpl implements RouletteRepository {
     private HashOperations hashOperations;
     private final int upperNumberBound = 36;
     private final int upperColorBound = 1;
+    private final double betAmountCap = 10000.00;
     final private GamblerRepository gamblerRepository;
 
     public RouletteRepositoryImpl(RedisTemplate<String, ?> redisTemplate, GamblerRepository gamblerRepository) {
@@ -45,6 +46,7 @@ public class RouletteRepositoryImpl implements RouletteRepository {
     public Map<String, Gambler> getGamblers(Roulette roulette) {
         Map<String, Gambler> gamblers = gamblerRepository.findAll();
         gamblers.values().removeIf(value -> value.getId() != roulette.getId());
+        gamblers.values().removeIf(value -> value.getBetAmount() > betAmountCap);
         return gamblers;
     }
 
@@ -66,7 +68,9 @@ public class RouletteRepositoryImpl implements RouletteRepository {
         Roulette tempR = findById(roulette);
         tempR.setBetState("close");
         hashOperations.put(ROULETTE, tempR.getId(), tempR);
-        return tempR.getBetState();
+        Map<String, Gambler> rouletteGamblers = getGamblers(roulette);
+
+        return ;
     }
 
     @Override

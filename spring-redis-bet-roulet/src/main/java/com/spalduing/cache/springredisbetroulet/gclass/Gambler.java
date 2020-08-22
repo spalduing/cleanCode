@@ -7,13 +7,15 @@ public class Gambler implements Serializable {
     private String name;
     private String rouletteId;
     private int bet;
+    private double betAmount;
     private String color;
 
-    public Gambler(String id, String name, String rouletteId, int bet, String color) {
+    public Gambler(String id, String name, String rouletteId, int bet, double betAmount, String color) {
         this.id = id;
         this.name = name;
         this.rouletteId = rouletteId;
         this.bet = bet;
+        this.betAmount = betAmount;
         this.color = color;
     }
 
@@ -47,6 +49,14 @@ public class Gambler implements Serializable {
 
     public void setBet(int bet) {
         this.bet = bet;
+    }
+
+    public double getBetAmount() {
+        return betAmount;
+    }
+
+    public void setBetAmount(double betAmount) {
+        this.betAmount = betAmount;
     }
 
     public String getColor() {
