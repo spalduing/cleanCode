@@ -26,7 +26,8 @@ public class GamblerRepositoryImpl implements GamblerRepository {
 
     @Override
     public void save(Gambler gambler) {
-        hashOperations.put(GAMBLER, UUID.randomUUID().toString(), gambler);
+        gambler.setId(UUID.randomUUID().toString());
+        hashOperations.put(GAMBLER, gambler.getId(), gambler);
     }
 
     @Override

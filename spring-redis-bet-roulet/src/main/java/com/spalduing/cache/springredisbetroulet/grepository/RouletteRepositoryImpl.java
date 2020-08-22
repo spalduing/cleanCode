@@ -33,7 +33,8 @@ public class RouletteRepositoryImpl implements RouletteRepository {
 
     @Override
     public void save(Roulette roulette) {
-        hashOperations.put(ROULETTE, UUID.randomUUID().toString(), roulette);
+        roulette.setId(UUID.randomUUID().toString());
+        hashOperations.put(ROULETTE, roulette.getId() , roulette);
     }
 
     @Override
