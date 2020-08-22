@@ -23,7 +23,7 @@ public class RouletteResource {
         rouletteRepository.save(roulette);
         return roulette.getId();
     }
-    @PostMapping("/openR/{idR}")
+    @PatchMapping("/openR/{idR}")
     public String openR(@PathVariable("idR")  final String idR){
         return rouletteRepository.openRoulette(new Roulette(idR,"",""));
     }
@@ -32,5 +32,4 @@ public class RouletteResource {
     public Map<String, String> closeR(@PathVariable("idR")  final String idR){
         return rouletteRepository.closeRoulette(new Roulette(idR,"",""));
     }
-
 }
