@@ -7,9 +7,8 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
-import java.util.Map;
-import java.util.Random;
-import java.util.UUID;
+import java.util.*;
+
 @Repository
 public class RouletteRepositoryImpl implements RouletteRepository {
 
@@ -44,8 +43,9 @@ public class RouletteRepositoryImpl implements RouletteRepository {
 
     @Override
     public Map<String, Gambler> getGamblers(Roulette roulette) {
-        //gamblerRepository.
-        return null;
+        Map<String, Gambler> gamblers = gamblerRepository.findAll();
+        gamblers.values().removeIf(value -> value.getId() != roulette.getId());
+        return gamblers;
     }
 
     @Override
