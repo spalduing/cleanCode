@@ -28,7 +28,7 @@ public class RouletteResource {
         return rouletteRepository.openRoulette(new Roulette(idR,"",""));
     }
 
-    @PostMapping("/closeR/{idR}")
+    @PatchMapping("/closeR/{idR}")
     public Map<String, String> closeR(@PathVariable("idR")  final String idR){
         return rouletteRepository.closeRoulette(new Roulette(idR,"",""));
     }
