@@ -3,7 +3,7 @@ package com.spalduing.cache.springredisbetroulet.gclass;
 import java.io.Serializable;
 
 public class Gambler implements Serializable {
-    //private static final long serialVersionUID = 6432364725432526273L;
+    //private static final long serialVersionUID = 6432364725432526274L;
     private String id;
     private String name;
     private String rouletteId;
