@@ -2,10 +2,7 @@ package com.spalduing.cache.springredisbetroulet.gresource;
 
 import com.spalduing.cache.springredisbetroulet.gclass.Roulette;
 import com.spalduing.cache.springredisbetroulet.grepository.RouletteRepository;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/rest/roulette")
@@ -21,6 +18,9 @@ public class RouletteResource {
         return roulette.getId();
     }
 
-    @Post
+    @PostMapping("/openR/{idR}")
+    public String openR(@PathVariable("idR")  final String idR){
+        return rouletteRepository.openRoulette(new Roulette(idR,"",""));
+    }
 
 }
