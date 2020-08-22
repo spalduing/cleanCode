@@ -4,6 +4,8 @@ import com.spalduing.cache.springredisbetroulet.gclass.Roulette;
 import com.spalduing.cache.springredisbetroulet.grepository.RouletteRepository;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/rest/roulette")
 public class RouletteResource {
@@ -20,6 +22,11 @@ public class RouletteResource {
     @PostMapping("/openR/{idR}")
     public String openR(@PathVariable("idR")  final String idR){
         return rouletteRepository.openRoulette(new Roulette(idR,"",""));
+    }
+
+    @PostMapping("/closeR/{idR}")
+    public Map<String, String> closeR(@PathVariable("idR")  final String idR){
+        return rouletteRepository.closeRoulette(new Roulette(idR,"",""));
     }
 
 
