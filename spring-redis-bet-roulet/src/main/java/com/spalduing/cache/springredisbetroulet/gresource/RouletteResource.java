@@ -3,6 +3,7 @@ package com.spalduing.cache.springredisbetroulet.gresource;
 import com.spalduing.cache.springredisbetroulet.gclass.Roulette;
 import com.spalduing.cache.springredisbetroulet.grepository.RouletteRepository;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,9 +16,9 @@ public class RouletteResource {
         this.rouletteRepository = rouletteRepository;
     }
     @PostMapping("/addR")
-    public Roulette addR(@RequestMapping Roulette roulette){
+    public Roulette addR(@RequestBody Roulette roulette){
         rouletteRepository.save(roulette);
-        return rouletteRepository.
+        return rouletteRepository.findById(roulette);
     }
 
 }

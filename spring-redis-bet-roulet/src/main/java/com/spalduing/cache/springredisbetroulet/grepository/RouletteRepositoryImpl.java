@@ -33,6 +33,12 @@ public class RouletteRepositoryImpl implements RouletteRepository {
     }
 
     @Override
+    public Roulette findById(Roulette roulette) {
+        String id = roulette.getId();
+        return (Roulette)hashOperations.get(ROULETTE,id);
+    }
+
+    @Override
     public Map<String, Roulette> findAll() {
         return hashOperations.entries(ROULETTE);
     }
