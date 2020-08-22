@@ -2,9 +2,8 @@ package com.spalduing.cache.springredisbetroulet.gclass;
 
 import java.io.Serializable;
 
-public class Gambler implements Serializable {
+public class Gambleri implements Serializable {
 
-    private static final long serialVersionUID = 6871920359022002187L;
     private String id;
     private String name;
     private String rouletteId;
@@ -12,7 +11,7 @@ public class Gambler implements Serializable {
     private double betAmount;
     private String color;
 
-    public Gambler(String id, String name, String rouletteId, int bet, double betAmount, String color) {
+    public Gambleri(String id, String name, String rouletteId, int bet, double betAmount, String color) {
         this.id = id;
         this.name = name;
         this.rouletteId = rouletteId;

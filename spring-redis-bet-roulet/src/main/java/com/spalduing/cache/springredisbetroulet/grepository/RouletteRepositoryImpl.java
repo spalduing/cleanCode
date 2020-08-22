@@ -1,8 +1,8 @@
 package com.spalduing.cache.springredisbetroulet.grepository;
 
 import com.spalduing.cache.springredisbetroulet.gclass.Gambler;
+import com.spalduing.cache.springredisbetroulet.gclass.Gambleri;
 import com.spalduing.cache.springredisbetroulet.gclass.Roulette;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
@@ -59,28 +59,29 @@ public class RouletteRepositoryImpl implements RouletteRepository {
 
     @Override
     public String openRoulette(Roulette roulette) {
-        Roulette tempR = findById(roulette);
-        tempR.setBetState("open");
-        hashOperations.put(ROULETTE, tempR.getId(), tempR);
-        return tempR.getBetState();
+        Roulette tempRoulette = findById(roulette);
+        tempRoulette.setBetState("open");
+        hashOperations.put(ROULETTE, tempRoulette.getId(), tempRoulette);
+        return tempRoulette.getBetState();
     }
 
     @Override
     public Map<String, String> closeRoulette(Roulette roulette) {
-        String value = "";
-        Map<String,String> res = new HashMap<>();
-        Roulette tempR = findById(roulette);
-        tempR.setBetState("close");
-        hashOperations.put(ROULETTE, tempR.getId(), tempR);
+        String betResult = "";
+        Gambler tempGambler = new Gambler("","","",0,0.0,"");
+        Map<String,String> gamblersAndBets = new HashMap<>();
+        Roulette tempRoulette = findById(roulette);
+        tempRoulette.setBetState("close");
+        hashOperations.put(ROULETTE, tempRoulette.getId(), tempRoulette);
         Map<String, Gambler> rouletteGamblers = getGamblers(roulette);
         Iterator it = rouletteGamblers.entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry pair = (Map.Entry)it.next();
-            Gambler marks = ((Gambler)pair.getValue());
-            value = playBet(marks.getColor(),marks.getBet(),marks.getBetAmount());
-            res.put(marks.getName(),value);
+            tempGambler = ((Gambler)pair.getValue());
+            betResult = playBet(tempGambler.getColor(),tempGambler.getBet(),tempGambler.getBetAmount());
+            gamblersAndBets.put(tempGambler.getName(),betResult);
         }
-        return res;
+        return gamblersAndBets;
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.spalduing.cache.springredisbetroulet.grepository;
 
 import com.spalduing.cache.springredisbetroulet.gclass.Gambler;
+import com.spalduing.cache.springredisbetroulet.gclass.Gambleri;
 import com.spalduing.cache.springredisbetroulet.gclass.Roulette;
 
 import java.util.Map;

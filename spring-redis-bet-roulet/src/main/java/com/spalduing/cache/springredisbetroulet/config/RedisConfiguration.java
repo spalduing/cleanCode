@@ -1,6 +1,5 @@
 package com.spalduing.cache.springredisbetroulet.config;
 
-import com.spalduing.cache.springredisbetroulet.gclass.Gambler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;

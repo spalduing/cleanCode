@@ -2,7 +2,6 @@ package com.spalduing.cache.springredisbetroulet.gresource;
 
 import com.spalduing.cache.springredisbetroulet.gclass.Gambler;
 import com.spalduing.cache.springredisbetroulet.grepository.GamblerRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -23,9 +22,9 @@ public class GamblerResource {
     }
     @PostMapping("/updateG/{id}/{name}/{rId}/{bet}/{color}")
     public Gambler updateG(@PathVariable("id") final String id, @PathVariable("name") final String name,
-                           @PathVariable("bet") final String bet, @PathVariable("rId") final String rouletteId,
-                           @PathVariable("color") final String color){
-        gamblerRepository.update(new Gambler( id , name, rouletteId, Integer.parseInt(bet), 0.0, ""));
+                            @PathVariable("bet") final String bet, @PathVariable("rId") final String rouletteId,
+                            @PathVariable("color") final String color){
+        gamblerRepository.update(new Gambler( id , name, rouletteId, Integer.parseInt(bet), 0.0, color));
         return gamblerRepository.findById(new Gambler(id, name,rouletteId, Integer.parseInt(bet), 0.0, ""));
     }
     @GetMapping("/findG/{id}")

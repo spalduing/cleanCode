@@ -2,6 +2,7 @@ package com.spalduing.cache.springredisbetroulet.grepository;
 
 import com.spalduing.cache.springredisbetroulet.gclass.Gambler;
 
+
 import java.util.Map;
 
 public interface GamblerRepository {
