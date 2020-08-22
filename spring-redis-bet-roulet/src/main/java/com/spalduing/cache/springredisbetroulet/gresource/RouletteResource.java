@@ -14,6 +14,10 @@ public class RouletteResource {
     public RouletteResource(RouletteRepository rouletteRepository) {
         this.rouletteRepository = rouletteRepository;
     }
+    @GetMapping("/allR")
+    public Map<String, Roulette> allR(){
+        return rouletteRepository.findAll();
+    }
     @PostMapping("/addR")
     public String addR(@RequestBody Roulette roulette){
         rouletteRepository.save(roulette);
@@ -28,6 +32,5 @@ public class RouletteResource {
     public Map<String, String> closeR(@PathVariable("idR")  final String idR){
         return rouletteRepository.closeRoulette(new Roulette(idR,"",""));
     }
-
 
 }

@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Random;
 
 public class Roulette implements Serializable {
+    private static final long serialVersionUID = 6432364725432526272L;
     private String id;
     private String name;
     private String betState;
