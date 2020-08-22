@@ -64,17 +64,25 @@ public class RouletteRepositoryImpl implements RouletteRepository {
     }
 
     @Override
-    public String closeRoulette(Roulette roulette) {
+    public Map<String, String> closeRoulette(Roulette roulette) {
+        String value = "";
+        Map<String,String> res = new HashMap<>();
         Roulette tempR = findById(roulette);
         tempR.setBetState("close");
         hashOperations.put(ROULETTE, tempR.getId(), tempR);
         Map<String, Gambler> rouletteGamblers = getGamblers(roulette);
-
-        return ;
+        Iterator it = rouletteGamblers.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry pair = (Map.Entry)it.next();
+            Gambler marks = ((Gambler)pair.getValue());
+            value = playBet(marks.getColor(),marks.getBet(),marks.getBetAmount());
+            res.put(marks.getName(),value);
+        }
+        return res;
     }
 
     @Override
-    public String playBet(String betColor, int betNumber, int betAmount) {
+    public String playBet(String betColor, int betNumber, double betAmount) {
         Random rand = new Random();
         String[] rouletteColors = {"red","black"};
         int colorPosition = rand.nextInt(upperColorBound);

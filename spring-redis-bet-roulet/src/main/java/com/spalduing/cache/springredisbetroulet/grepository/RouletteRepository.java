@@ -11,6 +11,6 @@ public interface RouletteRepository {
     Map<String, Gambler> getGamblers(Roulette roulette);
     Map<String, Roulette> findAll();
     String openRoulette(Roulette roulette);
-    String closeRoulette(Roulette roulette);
-    String playBet(String betColor, int betNumber, int betAmount);
+    Map<String, String> closeRoulette(Roulette roulette);
+    String playBet(String betColor, int betNumber, double betAmount);
 }
