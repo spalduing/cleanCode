@@ -1,5 +1,6 @@
 package com.spalduing.cache.springredisbetroulet.grepository;
 
+import com.spalduing.cache.springredisbetroulet.gclass.Gambler;
 import com.spalduing.cache.springredisbetroulet.gclass.Roulette;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -42,6 +43,12 @@ public class RouletteRepositoryImpl implements RouletteRepository {
     }
 
     @Override
+    public Map<String, Gambler> getGamblers(Roulette roulette) {
+        //gamblerRepository.
+        return null;
+    }
+
+    @Override
     public Map<String, Roulette> findAll() {
         return hashOperations.entries(ROULETTE);
     }
@@ -51,7 +58,7 @@ public class RouletteRepositoryImpl implements RouletteRepository {
         Roulette tempR = findById(roulette);
         tempR.setBetState("open");
         hashOperations.put(ROULETTE, tempR.getId(), tempR);
-        return roulette.getBetState();
+        return tempR.getBetState();
     }
 
     @Override
@@ -59,7 +66,7 @@ public class RouletteRepositoryImpl implements RouletteRepository {
         Roulette tempR = findById(roulette);
         tempR.setBetState("close");
         hashOperations.put(ROULETTE, tempR.getId(), tempR);
-        return roulette.getBetState();
+        return tempR.getBetState();
     }
 
     @Override

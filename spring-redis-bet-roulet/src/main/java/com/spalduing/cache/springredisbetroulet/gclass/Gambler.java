@@ -7,9 +7,9 @@ public class Gambler implements Serializable {
     private String name;
     private String rouletteId;
     private int bet;
-    private boolean color;
+    private String color;
 
-    public Gambler(String id, String name, String rouletteId, int bet, boolean color) {
+    public Gambler(String id, String name, String rouletteId, int bet, String color) {
         this.id = id;
         this.name = name;
         this.rouletteId = rouletteId;
@@ -49,11 +49,11 @@ public class Gambler implements Serializable {
         this.bet = bet;
     }
 
-    public boolean isColor() {
+    public String getColor() {
         return color;
     }
 
-    public void setColor(boolean color) {
+    public void setColor(String color) {
         this.color = color;
     }
 }
