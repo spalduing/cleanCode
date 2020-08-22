@@ -17,10 +17,10 @@ public class RouletteResource {
         rouletteRepository.save(roulette);
         return roulette.getId();
     }
-
     @PostMapping("/openR/{idR}")
     public String openR(@PathVariable("idR")  final String idR){
         return rouletteRepository.openRoulette(new Roulette(idR,"",""));
     }
+
 
 }

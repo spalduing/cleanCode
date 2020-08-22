@@ -13,13 +13,16 @@ import java.util.UUID;
 public class RouletteRepositoryImpl implements RouletteRepository {
 
     private static final String ROULETTE = "ROULETTE";
+    private static final String GAMBLER = "GAMBLER";
     private RedisTemplate<String, ?> redisTemplate;
     private HashOperations hashOperations;
     private final int upperNumberBound = 36;
     private final int upperColorBound = 1;
+    final private GamblerRepository gamblerRepository;
 
-    public RouletteRepositoryImpl(RedisTemplate<String, ?> redisTemplate) {
+    public RouletteRepositoryImpl(RedisTemplate<String, ?> redisTemplate, GamblerRepository gamblerRepository) {
         this.redisTemplate = redisTemplate;
+        this.gamblerRepository = gamblerRepository;
     }
 
     @PostConstruct
@@ -45,13 +48,17 @@ public class RouletteRepositoryImpl implements RouletteRepository {
 
     @Override
     public String openRoulette(Roulette roulette) {
-        roulette.setBetState("open");
+        Roulette tempR = findById(roulette);
+        tempR.setBetState("open");
+        hashOperations.put(ROULETTE, tempR.getId(), tempR);
         return roulette.getBetState();
     }
 
     @Override
     public String closeRoulette(Roulette roulette) {
-        roulette.setBetState("close");
+        Roulette tempR = findById(roulette);
+        tempR.setBetState("close");
+        hashOperations.put(ROULETTE, tempR.getId(), tempR);
         return roulette.getBetState();
     }
 
