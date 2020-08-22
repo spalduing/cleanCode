@@ -2,6 +2,7 @@ package com.spalduing.cache.springredisbetroulet.gresource;
 
 import com.spalduing.cache.springredisbetroulet.gclass.Gambler;
 import com.spalduing.cache.springredisbetroulet.grepository.GamblerRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;

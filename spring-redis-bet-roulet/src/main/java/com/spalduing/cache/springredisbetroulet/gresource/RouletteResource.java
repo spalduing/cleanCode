@@ -16,20 +16,24 @@ public class RouletteResource {
     }
     @GetMapping("/allR")
     public Map<String, Roulette> allR(){
+
         return rouletteRepository.findAll();
     }
     @PostMapping("/addR")
     public String addR(@RequestBody Roulette roulette){
         rouletteRepository.save(roulette);
+
         return roulette.getId();
     }
     @PatchMapping("/openR/{idR}")
     public String openR(@PathVariable("idR")  final String idR){
+
         return rouletteRepository.openRoulette(new Roulette(idR,"",""));
     }
 
     @PatchMapping("/closeR/{idR}")
     public Map<String, String> closeR(@PathVariable("idR")  final String idR){
+
         return rouletteRepository.closeRoulette(new Roulette(idR,"",""));
     }
 }

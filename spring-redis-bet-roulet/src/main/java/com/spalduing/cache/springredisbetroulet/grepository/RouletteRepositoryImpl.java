@@ -2,6 +2,7 @@ package com.spalduing.cache.springredisbetroulet.grepository;
 
 import com.spalduing.cache.springredisbetroulet.gclass.Gambler;
 import com.spalduing.cache.springredisbetroulet.gclass.Roulette;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
