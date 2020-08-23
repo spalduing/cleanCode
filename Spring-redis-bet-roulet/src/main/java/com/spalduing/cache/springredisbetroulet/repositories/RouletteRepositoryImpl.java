@@ -43,7 +43,7 @@ public class RouletteRepositoryImpl implements RouletteRepository {
     @Override
     public Map<String, Bet> getBets(Roulette roulette) {
         Map<String, Bet> bets = betRepository.findAll();
-        bets.values().removeIf(value -> value.getRouletteId() != roulette.getId());
+        //bets.values().removeIf(value -> value.getRouletteId() != roulette.getId());
         bets.values().removeIf(value -> value.getBetAmount() > betAmountCap);
         return bets;
     }
@@ -69,8 +69,12 @@ public class RouletteRepositoryImpl implements RouletteRepository {
         Roulette tempRoulette = findById(roulette);
         tempRoulette.setBetState("close");
         hashOperations.put(ROULETTE, tempRoulette.getId(), tempRoulette);
-        Map<String, Bet> rouletteGamblers = getBets(roulette);
-        Iterator it = rouletteGamblers.entrySet().iterator();
+        Map<String, Bet> rouletteBets = getBets(tempRoulette);
+        if(rouletteBets.isEmpty()){
+            betsAndResults.put("I have no bets","buddy");
+            return betsAndResults;
+        }
+        Iterator it = rouletteBets.entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry pair = (Map.Entry)it.next();
             tempBet = ((Bet)pair.getValue());

@@ -1,6 +1,7 @@
 package com.spalduing.cache.springredisbetroulet.repositories;
 
 import com.spalduing.cache.springredisbetroulet.classes.Bet;
+import com.spalduing.cache.springredisbetroulet.classes.Roulette;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
@@ -13,9 +14,11 @@ public class BetRepositoryImpl implements BetRepository {
     private static final String BET = "BET";
     private RedisTemplate<String, ?> redisTemplate;
     private HashOperations hashOperations;
+    final private RouletteRepository rouletteRepository;
 
-    public BetRepositoryImpl(RedisTemplate<String, ?> redisTemplate) {
+    public BetRepositoryImpl(RedisTemplate<String, ?> redisTemplate, RouletteRepository rouletteRepository) {
         this.redisTemplate = redisTemplate;
+        this.rouletteRepository = rouletteRepository;
     }
 
     @PostConstruct
@@ -25,8 +28,13 @@ public class BetRepositoryImpl implements BetRepository {
 
     @Override
     public void save(Bet bet) {
-        bet.setId(UUID.randomUUID().toString());
-        hashOperations.put(BET,bet.getId(), bet);
+        Roulette tempRoulette = new Roulette(bet.getRouletteId(),"","");
+        Roulette tempRoulette2 = rouletteRepository.findById(tempRoulette);
+        Boolean isOpen = tempRoulette2.getBetState() == "open";
+        if(isOpen) {
+            bet.setId(UUID.randomUUID().toString());
+            hashOperations.put(BET, bet.getId(), bet);
+        }
     }
 
     @Override
