@@ -43,7 +43,7 @@ public class RouletteRepositoryImpl implements RouletteRepository {
     @Override
     public Map<String, Bet> getBets(Roulette roulette) {
         Map<String, Bet> bets = betRepository.findAll();
-        //bets.values().removeIf(value -> value.getRouletteId() != roulette.getId());
+        bets.values().removeIf(value -> !value.getRouletteId().equals(roulette.getId()));
         bets.values().removeIf(value -> value.getBetAmount() > betAmountCap);
         return bets;
     }
