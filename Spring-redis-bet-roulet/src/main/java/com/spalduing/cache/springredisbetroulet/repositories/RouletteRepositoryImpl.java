@@ -4,10 +4,11 @@ import com.spalduing.cache.springredisbetroulet.classes.Bet;
 import com.spalduing.cache.springredisbetroulet.classes.Roulette;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
 import java.util.*;
-
+@Repository
 public class RouletteRepositoryImpl implements RouletteRepository {
     private static final String ROULETTE = "ROULETTE";
     private RedisTemplate<String, ?> redisTemplate;
@@ -63,7 +64,7 @@ public class RouletteRepositoryImpl implements RouletteRepository {
     @Override
     public Map<String, String> closeRoulette(Roulette roulette) {
         String betResult = "";
-        Bet tempBet = new Bet("","","",0,0.0);
+        Bet tempBet = new Bet("", "", "","",0,0.0);
         Map<String,String> betsAndResults = new HashMap<>();
         Roulette tempRoulette = findById(roulette);
         tempRoulette.setBetState("close");

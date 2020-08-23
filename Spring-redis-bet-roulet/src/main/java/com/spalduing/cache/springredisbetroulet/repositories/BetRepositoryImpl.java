@@ -3,11 +3,12 @@ package com.spalduing.cache.springredisbetroulet.repositories;
 import com.spalduing.cache.springredisbetroulet.classes.Bet;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
 import java.util.Map;
 import java.util.UUID;
-
+@Repository
 public class BetRepositoryImpl implements BetRepository {
     private static final String BET = "BET";
     private RedisTemplate<String, ?> redisTemplate;

@@ -6,13 +6,15 @@ public class Bet implements Serializable {
 
     private static final long serialVersionUID = 8940856680802226143L;
     private String id;
+    private String userId;
     private String rouletteId;
     private String betColor;
     private int betNumber;
     private double betAmount;
 
-    public Bet(String id, String rouletteId, String betColor, int betNumber, double betAmount) {
+    public Bet(String id, String userId, String rouletteId, String betColor, int betNumber, double betAmount) {
         this.id = id;
+        this.userId = userId;
         this.rouletteId = rouletteId;
         this.betColor = betColor;
         this.betNumber = betNumber;
@@ -25,6 +27,14 @@ public class Bet implements Serializable {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getRouletteId() {
