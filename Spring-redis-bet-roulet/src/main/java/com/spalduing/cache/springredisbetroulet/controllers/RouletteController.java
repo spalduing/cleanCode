@@ -15,7 +15,7 @@ public class RouletteController {
         this.rouletteRepository = rouletteRepository;
     }
     @GetMapping("/allR")
-    public Map<String, Roulette> allR(){
+    public Map<String, Roulette> allRoulette(){
 
         return rouletteRepository.findAll();
     }
