@@ -20,21 +20,21 @@ public class RouletteController {
         return rouletteRepository.findAll();
     }
     @PostMapping("/addR")
-    public String addR(@RequestBody Roulette roulette){
+    public String addRoulette(@RequestBody Roulette roulette){
         rouletteRepository.save(roulette);
 
         return roulette.getId();
     }
-    @PatchMapping("/openR/{idR}")
-    public String openR(@PathVariable("idR")  final String idR){
-        Roulette tempRoulette = new Roulette(idR,"","");
+    @PatchMapping("/openR/{id}")
+    public String openRoulette(@PathVariable("id")  final String id){
+        Roulette tempRoulette = new Roulette(id,"","");
 
         return rouletteRepository.openRoulette(tempRoulette);
     }
 
-    @PatchMapping("/closeR/{idR}")
-    public Map<String, String> closeR(@PathVariable("idR")  final String idR){
-        Roulette tempRoulette = new Roulette(idR,"","");
+    @PatchMapping("/closeR/{id}")
+    public Map<String, String> closeRoulette(@PathVariable("id")  final String id){
+        Roulette tempRoulette = new Roulette(id,"","");
 
         return rouletteRepository.closeRoulette(tempRoulette);
     }

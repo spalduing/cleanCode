@@ -15,9 +15,9 @@ public class BetController {
         this.betRepository = betRepository;
     }
 
-    @PostMapping("/addB/{uId}")
-    public Bet addBet(@PathVariable("uId") final String uId, @RequestBody Bet bet){
-        bet.setUserId(uId);
+    @PostMapping("/addB/{id}")
+    public Bet addBet(@PathVariable("id") final String id, @RequestBody Bet bet){
+        bet.setUserId(id);
         betRepository.save(bet);
 
         return betRepository.findById(bet);
