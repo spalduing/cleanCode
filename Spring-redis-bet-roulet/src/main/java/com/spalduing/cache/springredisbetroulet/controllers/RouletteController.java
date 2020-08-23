@@ -28,12 +28,14 @@ public class RouletteController {
     @PatchMapping("/openR/{idR}")
     public String openR(@PathVariable("idR")  final String idR){
         Roulette tempRoulette = new Roulette(idR,"","");
+
         return rouletteRepository.openRoulette(tempRoulette);
     }
 
     @PatchMapping("/closeR/{idR}")
     public Map<String, String> closeR(@PathVariable("idR")  final String idR){
         Roulette tempRoulette = new Roulette(idR,"","");
+
         return rouletteRepository.closeRoulette(tempRoulette);
     }
 }

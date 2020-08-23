@@ -13,8 +13,8 @@ public class RouletteRepositoryImpl implements RouletteRepository {
     private static final String ROULETTE = "ROULETTE";
     private RedisTemplate<String, ?> redisTemplate;
     private HashOperations hashOperations;
-    private final int upperNumberBound = 36;
-    private final int upperColorBound = 1;
+    private final int upperNumberBound = 37;
+    private final int upperColorBound = 2;
     private final double betAmountCap = 10000.00;
     final private BetRepository betRepository;
 
@@ -37,6 +37,7 @@ public class RouletteRepositoryImpl implements RouletteRepository {
     @Override
     public Roulette findById(Roulette roulette) {
         String id = roulette.getId();
+
         return (Roulette)hashOperations.get(ROULETTE,id);
     }
 
@@ -45,6 +46,7 @@ public class RouletteRepositoryImpl implements RouletteRepository {
         Map<String, Bet> bets = betRepository.findAll();
         bets.values().removeIf(value -> !value.getRouletteId().equals(roulette.getId()));
         bets.values().removeIf(value -> value.getBetAmount() > betAmountCap);
+
         return bets;
     }
 
@@ -58,6 +60,7 @@ public class RouletteRepositoryImpl implements RouletteRepository {
         Roulette tempRoulette = findById(roulette);
         tempRoulette.setBetState("open");
         hashOperations.put(ROULETTE, tempRoulette.getId(), tempRoulette);
+
         return tempRoulette.getBetState();
     }
 
@@ -81,6 +84,7 @@ public class RouletteRepositoryImpl implements RouletteRepository {
             betResult = playBet(tempBet.getBetColor(),tempBet.getBetNumber(),tempBet.getBetAmount());
             betsAndResults.put(tempBet.getId(),betResult);
         }
+
         return betsAndResults;
     }
 
@@ -91,7 +95,7 @@ public class RouletteRepositoryImpl implements RouletteRepository {
         int colorPosition = rand.nextInt(upperColorBound);
         int winnerNumber = rand.nextInt(upperNumberBound);
         String winnerColor = rouletteColors[colorPosition];
-        if(winnerNumber == betNumber && winnerColor == betColor){
+        if(winnerNumber == betNumber || winnerColor == betColor){
             return "YOU WIN";
         }
 

@@ -33,12 +33,14 @@ public class BetRepositoryImpl implements BetRepository {
 
     @Override
     public Map<String, Bet> findAll() {
+
         return hashOperations.entries(BET);
     }
 
     @Override
     public Bet findById(Bet bet) {
         String id = bet.getId();
+
         return (Bet) hashOperations.get(BET, id);
     }
 }
